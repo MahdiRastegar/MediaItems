@@ -19,8 +19,9 @@ header > h2 {
 header > h2.error {
     color: #d93a3e;
 }
+
 section {
-    flex: 1;
+    
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
@@ -30,6 +31,9 @@ section > media-item {
 }
 footer {
     text-align: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 footer .icon {
     width: 64px;
