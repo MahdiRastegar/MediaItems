@@ -6,7 +6,8 @@
 <div>{{ mediaItem.year }}</div>
 <div><template [ngIf]="mediaItem.description">
     <div id="underline" >_______________<br></div>
-</template>{{ mediaItem.description }}</div>
+    {{ mediaItem.description }}
+</template></div>
 <div class="tools">
     <svg [mwFavorite]="mediaItem.isFavorite"
         class="favorite" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -15,8 +16,11 @@
     </svg>
     <a class="delete" (click)="onDelete()">
         remove
-    </a>
+    </a>    
     <a class="details">
         watch
     </a>
 </div>
+    <a class="edit" (click)="onEdit()">
+        edit
+    </a>

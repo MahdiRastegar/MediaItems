@@ -10,8 +10,12 @@ import {FavoriteDirective} from './favorite.directive';
 export class MediaItemComponent {
     @Input('mediaItemToWatch') mediaItem;
     @Output('deleted') delete = new EventEmitter();
+    @Output('edited') edit = new EventEmitter();
     
     onDelete() {
         this.delete.emit(this.mediaItem);
+    }
+    onEdit() {
+        this.edit.emit(this.mediaItem);
     }
 }

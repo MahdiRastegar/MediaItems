@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 140px;
-    height: 200px;
+    
     border: 2px solid;
     background-color: #29394b;
     padding: 10px;
@@ -11,6 +11,7 @@
 #underline{
     color:rgb(183, 212, 226);
 }
+
 h2 {
     font-size: 1.6em;
     flex: 1;
@@ -55,6 +56,18 @@ h2 {
     border-radius: 4px;
     color: #ffffff;
     cursor: pointer;
+}
+.edit {
+    display: block;
+    background-color: #85CEFF;
+    padding: 4px;
+    font-size: .8em;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-bottom: -3;
+    margin-top: 6;
+    text-align: center;
 }
 .details {
     display: block;

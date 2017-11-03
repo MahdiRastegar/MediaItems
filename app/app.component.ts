@@ -5,7 +5,8 @@ import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @RouteConfig([
     { path: '/:medium', component: MediaItemListComponent, name: 'List' },
-    { path: '/add', component: MediaItemFormComponent, name: 'AddMediaItem' }
+    { path: '/add', component: MediaItemFormComponent, name: 'AddMediaItem' },
+    { path: '/edit/:id', component: MediaItemFormComponent, name: 'EditMediaItem' }
 ])
 @Component({
     selector: 'media-tracker-app',

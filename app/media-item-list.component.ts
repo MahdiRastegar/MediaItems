@@ -2,7 +2,7 @@ import {Component} from 'angular2/core';
 import {MediaItemComponent} from './media-item.component';
 import {CategoryListPipe} from './category-list.pipe';
 import {MediaItemService} from './media-item.service';
-import {RouteParams, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouteParams, ROUTER_DIRECTIVES,Router} from 'angular2/router';
 
 @Component({
     selector: 'media-item-list',
@@ -16,7 +16,8 @@ export class MediaItemListComponent {
     mediaItems = [];
     
     constructor(private mediaItemService: MediaItemService,
-        private routeParams: RouteParams) {}
+        private routeParams: RouteParams,
+        private router:Router) {}
     
     ngOnInit() {
         this.medium = this.routeParams.get('medium');
@@ -28,6 +29,10 @@ export class MediaItemListComponent {
             .subscribe(() => {
                 this.getMediaItems(this.medium);
             });
+    }
+    onMediaItemEdited(mediaItem) {
+        this.router.navigate(['../EditMediaItem',{id:mediaItem.id}])
+        
     }
     
     getMediaItems(medium) {

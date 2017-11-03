@@ -7,6 +7,7 @@
     <media-item *ngFor="#mediaItem of mediaItems"
         [mediaItemToWatch]="mediaItem"
         (deleted)="onMediaItemDeleted($event)"
+        (edited)="onMediaItemEdited($event)"
         [ngClass]="{'medium-movies': mediaItem.medium === 'Movies', 'medium-series': mediaItem.medium === 'Series'}"></media-item>
 </section>
 <footer>

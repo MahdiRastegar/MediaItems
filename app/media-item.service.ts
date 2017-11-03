@@ -14,10 +14,21 @@ export class MediaItemService {
                 return response.json().mediaItems;
             });
     }
+    getmediaItem(id) {        
+        return this.http.get(`mediaitems/${id}`)
+        .map(response => {
+            return response.json().mediaItems;
+        });
+    }
     
     add(mediaItem) {
         var headers = new Headers({ 'Content-Type': 'application/json' });
         return this.http.post('mediaitems', JSON.stringify(mediaItem), { headers: headers })
+            .map(response => {});
+    }
+    edit(id,mediaItem) {
+        var headers = new Headers({ 'Content-Type': 'application/json' });
+        return this.http.post(`mediaitems/${id}`, JSON.stringify(mediaItem), { headers: headers })
             .map(response => {});
     }
     

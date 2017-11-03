@@ -39,21 +39,31 @@ export class MockXHRBackend {
                         var id = parseInt(request.url.split('/')[1]);
                         mediaItems = this._mediaItems.filter(mediaItem => mediaItem.id === id);
                         responseOptions = new ResponseOptions({
-                            body: JSON.parse(JSON.stringify(mediaItems[0])),
+                            body: {mediaItems:JSON.parse(JSON.stringify(mediaItems))},
                             status: 200
                         });
                     }
                     break;
                 case RequestMethod.Post:
+                if(request.url == 'mediaitems')
+                {
                     var mediaItem = JSON.parse(request.text().toString());
                     mediaItem.id = this._getNewId();
                     this._mediaItems.push(mediaItem);
                     responseOptions = new ResponseOptions({ status: 201 });
-                    break;
+                }
+                else
+                {
+                    var mediaItem = JSON.parse(request.text().toString());
+                    var id = parseInt(request.url.split('/')[1]);
+                    this._editMediaItem(id,mediaItem);
+                    responseOptions = new ResponseOptions({ status: 201 });
+                }
+                    break;                
                 case RequestMethod.Delete:
                     var id = parseInt(request.url.split('/')[1]);
                     this._deleteMediaItem(id);
-                    responseOptions = new ResponseOptions({ status: 200 });
+                    responseOptions = new ResponseOptions({ status: 200 });                    
             }
             
             var responseObject = new Response(responseOptions);
@@ -71,6 +81,18 @@ export class MockXHRBackend {
             this._mediaItems.splice(index, 1);
         }
     }
+    _editMediaItem(id,mediItemN) {
+        mediItemN.id=id;
+        var mediaItem = this._mediaItems.find(mediaItem => mediaItem.id === id);
+        var index = this._mediaItems.indexOf(mediaItem);
+        if (index >= 0) {
+            mediaItem.category=mediItemN.category;
+            mediaItem.name=mediItemN.name;
+            mediaItem.medium=mediItemN.medium;
+            mediaItem.year=mediItemN.year;            
+            mediaItem.description=mediItemN.description;
+        }
+    }
     
     _getNewId() {
         if (this._mediaItems.length > 0) {
@@ -86,7 +108,8 @@ export class MockXHRBackend {
             category: "Science Fiction",
             year: 2010,
             watchedOn: 1294166565384,
-            isFavorite: false
+            isFavorite: false,
+            description:null
         },
         {
             id: 2,
@@ -95,7 +118,8 @@ export class MockXHRBackend {
             category: "Comedy",
             year: 2015,
             watchedOn: null,
-            isFavorite: true
+            isFavorite: true,
+            description:null
         }, {
             id: 3,
             name: "The Redemption",
@@ -103,7 +127,8 @@ export class MockXHRBackend {
             category: "Action",
             year: 2016,
             watchedOn: null,
-            isFavorite: false
+            isFavorite: false,
+            description:null
         }, {
             id: 4,
             name: "Hoopers",
@@ -111,7 +136,9 @@ export class MockXHRBackend {
             category: "Drama",
             year: null,
             watchedOn: null,
-            isFavorite: true
+            isFavorite: true,
+            description:null
+            
         }, {
             id: 5,
             name: "Happy Joe: Cheery Road",
@@ -119,7 +146,8 @@ export class MockXHRBackend {
             category: "Action",
             year: 2015,
             watchedOn: 1457166565384,
-            isFavorite: false
+            isFavorite: false,
+            description:null           
         }
     ];
 }
